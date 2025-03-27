@@ -71,7 +71,21 @@ class Enemy extends Player{
 
     recomeca(){
         this.x = +1200
-        this.y = Math.floor(Math.random() * ((600 - 2 + 1) + 2)) // quando o carro sair da tela
+        this.y = Math.floor(Math.random() * ((600 - 2 + 1) + 2))
+    }
+
+    mov_enemy2(){
+        this.y += 7
+        console.log(this.y)
+        console.log(this.x)
+        if(this.y >= 550){
+            this.recomeca2()
+        }
+    }
+
+    recomeca2(){
+        this.y = +1
+        this.x = Math.floor(Math.random() * ((900 - 2 + 1) + 2))
     }
 }
 
@@ -85,15 +99,6 @@ class Text{
 }
 
 class Enemy2 extends Player{
-    mov_enemy(){
-        this.y += 10
-        if(this.y >= 600){
-            this.recomeca()
-        }
-    }
 
-    recomeca(){
-        this.x = -600
-        this.y = Math.floor(Math.random() * ((300 - 2 + 1) + 2)) // quando o carro sair da tela
-    }
+
 }

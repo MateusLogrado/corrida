@@ -7,7 +7,10 @@ let mal2 = new Enemy(1150,450,100,50,"./img/carromal2.png")
 let mal22 = new Enemy(1150,550,100,50,"./img/carromal2.png")
 let policia = new Enemy(1150,550,100,50,"./img/policia.png")
 let policia2 = new Enemy(1150,550,100,50,"./img/policia.png")
-let lata = new Enemy2(600,1,50,50, "./img/lixo.png")
+let lata = new Enemy(600,1,30,50, "./img/lixo.png")
+let lata2 = new Enemy(600,70,30,50, "./img/lixo.png")
+let lata3 = new Enemy(600,10,30,50, "./img/lixo.png")
+let lata4 = new Enemy(600,40,30,50, "./img/lixo.png")
 let t1 = new Text()
 let t2 = new Text()
 let t3 = new Text()
@@ -104,6 +107,18 @@ function colisao(){
         carro.vida -= 1
         policia2.recomeca()
         console.log("policia2")
+    }else if(carro.colid(lata)){
+        carro.vida -= 1
+        lata.recomeca()
+    }else if(carro.colid(lata2)){
+        carro.vida -= 1
+        lata2.recomeca()
+    }else if(carro.colid(lata3)){
+        carro.vida -= 1
+        lata3.recomeca()
+    }else if(carro.colid(lata4)){
+        carro.vida -= 1
+        lata4.recomeca()
     }
 
 }
@@ -139,7 +154,15 @@ function atualizar(){
     game_over()
     pontos()
     fase2()
+    fase3()
     if(tela === 2){
+        policia.mov_enemy()
+        policia2.mov_enemy()
+    }else if(tela === 3){
+        lata.mov_enemy2()
+        lata2.mov_enemy2()
+        lata3.mov_enemy2()
+        lata4.mov_enemy2()
         policia.mov_enemy()
         policia2.mov_enemy()
     }
@@ -152,7 +175,6 @@ function desenhar(){
         t2.des_text(carro.vida,100,24,'black','26px Times')
         t4.des_text("Pontos: ", 1000, 24, "black", "26px Times")
         t4.des_text(carro.pts, 1090, 24, "black", "26px Times")
-        lata.des_player()
         carro.des_player()
         mal1.des_player()
         mal11.des_player()
@@ -187,6 +209,10 @@ function desenhar(){
         mal22.des_player()
         policia.des_player()
         policia2.des_player()
+        lata.des_player()
+        lata2.des_player()
+        lata3.des_player()
+        lata4.des_player()
     }
 }
 
