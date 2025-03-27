@@ -17,6 +17,7 @@ class Player extends Obj{
     dirY = 0
     dirX = 0
     vida = 5
+    pts = 0
 
     des_player(){
         let img = new Image()
@@ -50,6 +51,14 @@ class Player extends Obj{
             false
         }
     }
+
+    point(objeto){
+        if((objeto.x>=100)&&(objeto.x <= 100)){
+            return true
+        }else{
+            false
+        }
+    }
 }
 
 class Enemy extends Player{
@@ -72,5 +81,19 @@ class Text{
         des.lineWidth = '5'
         des.font = font
         des.fillText(text,x,y)
+    }
+}
+
+class Enemy2 extends Player{
+    mov_enemy(){
+        this.y += 10
+        if(this.y >= 600){
+            this.recomeca()
+        }
+    }
+
+    recomeca(){
+        this.x = -600
+        this.y = Math.floor(Math.random() * ((300 - 2 + 1) + 2)) // quando o carro sair da tela
     }
 }
