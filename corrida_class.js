@@ -13,6 +13,15 @@ class Obj{
     }
 }
 
+class Bg extends Obj{
+    mov(){
+        this.x -=5
+        if(this.x <= -1200){
+            this.x = 1200
+        }
+    }
+}
+
 class Player extends Obj{
     dirY = 0
     dirX = 0
