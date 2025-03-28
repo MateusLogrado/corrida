@@ -1,5 +1,8 @@
 let des = document.getElementById("des").getContext("2d")
-let cenario = new Obj(0,0,1200,600,"./img/estrada.png")
+let cenario = new Bg(0,0,1200,600,"./img/estrada.png")
+let cenario2 = new Bg(1200,0,1200,600,"./img/estrada.png")
+let cenario3 = new Bg(2400,0,1200,600,"./img/estrada.png")
+let inicio = new Obj(0,0,1200,600, "./img/desert.PNG")
 let carro = new Player(150,250,100,50,"./img/carrolegal.png")
 let mal1 = new Enemy(1150,50,100,50,"./img/carromal1.png")
 let mal11 = new Enemy(1150,250,100,50,"./img/carromal1.png")
@@ -15,16 +18,21 @@ let t1 = new Text()
 let t2 = new Text()
 let t3 = new Text()
 let t4 = new Text()
+let t5 = new Text()
+let t6 = new Text()
+let tInicio1 = new Text()
+let tInicio2 = new Text()
 
 
-let tela = 1
+
+let tela = 0
 
 document.addEventListener('keydown',(e)=>{
     // console.log(e.key)
     if(e.key === 'ArrowUp'){
-        carro.dirY = -5
+        carro.dirY = -7
     }else if(e.key === 'ArrowDown'){
-        carro.dirY = 5
+        carro.dirY = 7
     }
 })
 document.addEventListener('keyup', (e)=>{
@@ -38,9 +46,9 @@ document.addEventListener('keyup', (e)=>{
 document.addEventListener('keydown',(e)=>{
     // console.log(e.key)
     if(e.key === 'ArrowRight'){
-        carro.dirX = 5
+        carro.dirX = 7
     }else if(e.key === 'ArrowLeft'){
-        carro.dirX = -5
+        carro.dirX = -7
     }
 })
 document.addEventListener('keyup', (e)=>{
@@ -145,20 +153,54 @@ function fase3(){
 }
 
 function atualizar(){
-    carro.mov_carro()
-    mal1.mov_enemy()
-    mal11.mov_enemy()
-    mal2.mov_enemy()
-    mal22.mov_enemy()
-    colisao()
-    game_over()
-    pontos()
-    fase2()
-    fase3()
-    if(tela === 2){
+    if(tela === 0 ){
+        inicio.des_obj()
+        tInicio1.des_text("Desert Race", 340, 160, "#C2B280", "100px Times")
+        tInicio2.des_text("Aperte R para começar", 360, 500, "#C2B280", "50px Times")
+    }else if(tela === 1){
+        cenario.mov()
+        cenario2.mov()
+        cenario3.mov()
+        carro.mov_carro()
+        mal1.mov_enemy()
+        mal11.mov_enemy()
+        mal2.mov_enemy()
+        mal22.mov_enemy()
+        colisao()
+        game_over()
+        pontos()
+        fase2()
+        fase3()
+    }else if(tela === 2){
+        cenario.mov()
+        cenario2.mov()
+        cenario3.mov()
+        carro.mov_carro()
+        mal1.mov_enemy()
+        mal11.mov_enemy()
+        mal2.mov_enemy()
+        mal22.mov_enemy()
+        colisao()
+        game_over()
+        pontos()
+        fase2()
+        fase3()
         policia.mov_enemy()
         policia2.mov_enemy()
     }else if(tela === 3){
+        cenario.mov()
+        cenario2.mov()
+        cenario3.mov()
+        carro.mov_carro()
+        mal1.mov_enemy()
+        mal11.mov_enemy()
+        mal2.mov_enemy()
+        mal22.mov_enemy()
+        colisao()
+        game_over()
+        pontos()
+        fase2()
+        fase3()
         lata.mov_enemy2()
         lata2.mov_enemy2()
         lata3.mov_enemy2()
@@ -169,12 +211,20 @@ function atualizar(){
 }
 
 function desenhar(){
-    if(tela === 1){
+    if(tela === 0){
+        inicio.des_obj()
+        tInicio1.des_text("Desert Race", 340, 160, "#C2B280", "100px Times")
+        tInicio2.des_text("Aperte R para começar", 360, 500, "#C2B280", "50px Times")
+    }else if(tela === 1){
         cenario.des_obj()
+        cenario2.des_obj()
+        cenario3.des_obj()
         t1.des_text('Vida: ',40,24,'black','26px Times')
         t2.des_text(carro.vida,100,24,'black','26px Times')
         t4.des_text("Pontos: ", 1000, 24, "black", "26px Times")
         t4.des_text(carro.pts, 1090, 24, "black", "26px Times")
+        t5.des_text("Fase: ", 500, 24, "black", "26px Times")
+        t6.des_text(tela, 570, 24, "black", "26px Times")
         carro.des_player()
         mal1.des_player()
         mal11.des_player()
@@ -185,10 +235,14 @@ function desenhar(){
         t4.des_text('Pressione R para recomeçar',500,400,'red','30px Times')
     }else if(tela === 2){
         cenario.des_obj()
+        cenario2.des_obj()
+        cenario3.des_obj()
         t1.des_text('Vida: ',40,24,'black','26px Times')
         t2.des_text(carro.vida,100,24,'black','26px Times')
         t4.des_text("Pontos: ", 1000, 24, "black", "26px Times")
         t4.des_text(carro.pts, 1090, 24, "black", "26px Times")
+        t5.des_text("Fase: ", 500, 24, "black", "26px Times")
+        t6.des_text(tela, 570, 24, "black", "26px Times")
         carro.des_player()
         mal1.des_player()
         mal11.des_player()
@@ -198,10 +252,14 @@ function desenhar(){
         policia2.des_player()
     }else if(tela === 3){
         cenario.des_obj()
+        cenario2.des_obj()
+        cenario3.des_obj()
         t1.des_text('Vida: ',40,24,'black','26px Times')
         t2.des_text(carro.vida,100,24,'black','26px Times')
         t4.des_text("Pontos: ", 1000, 24, "black", "26px Times")
         t4.des_text(carro.pts, 1090, 24, "black", "26px Times")
+        t5.des_text("Fase: ", 500, 24, "black", "26px Times")
+        t6.des_text(tela, 570, 24, "black", "26px Times")
         carro.des_player()
         mal1.des_player()
         mal11.des_player()
@@ -213,7 +271,7 @@ function desenhar(){
         lata2.des_player()
         lata3.des_player()
         lata4.des_player()
-    }
+    }    
 }
 
 function main(){
