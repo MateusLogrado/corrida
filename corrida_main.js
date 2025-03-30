@@ -1,29 +1,48 @@
 let des = document.getElementById("des").getContext("2d")
+
 let cenario = new Bg(0,0,1200,600,"./img/estrada.png")
 let cenario2 = new Bg(1200,0,1200,600,"./img/estrada.png")
 let cenario3 = new Bg(2400,0,1200,600,"./img/estrada.png")
 let inicio = new Obj(0,0,1200,600, "./img/desert.PNG")
+
 let carro = new Player(150,250,100,50,"./img/carrolegal.png")
+
 let mal1 = new Enemy(1150,50,100,50,"./img/carromal1.png")
 let mal11 = new Enemy(1150,250,100,50,"./img/carromal1.png")
 let mal2 = new Enemy(1150,450,100,50,"./img/carromal2.png")
 let mal22 = new Enemy(1150,550,100,50,"./img/carromal2.png")
+
 let policia = new Enemy(1150,550,100,50,"./img/policia.png")
 let policia2 = new Enemy(1150,550,100,50,"./img/policia.png")
+
 let lata = new Enemy(600,1,30,50, "./img/lixo.png")
 let lata2 = new Enemy(600,70,30,50, "./img/lixo.png")
 let lata3 = new Enemy(600,10,30,50, "./img/lixo.png")
 let lata4 = new Enemy(600,40,30,50, "./img/lixo.png")
+
 let t1 = new Text()
 let t2 = new Text()
+
 let t3 = new Text()
 let t4 = new Text()
+
 let t5 = new Text()
 let t6 = new Text()
+
 let tInicio1 = new Text()
 let tInicio2 = new Text()
 
-
+let musicaInicial = new Audio("./sound/tela_inicial.wav")
+let gameOver = new Audio("./sound/gameOver.wav")
+let motor = new Audio("./sound/motor.wav")
+let crash = new Audio("./sound/crash.map3")
+crash.volume = 0.5
+motor.loop = true
+motor.volume = 0.5
+gameOver.volume = 0.4
+gameOver.loop = true
+musicaInicial.volume = 0.6
+musicaInicial.loop = true
 
 let tela = 0
 
@@ -71,6 +90,7 @@ document.addEventListener('keydown',(e)=>{
         carro.y = 250
         carro.vida = 5
         carro.pts = 0
+        gameOver.pause()
     }
 })
 
@@ -92,39 +112,49 @@ function pontos(){
 
 function colisao(){
     if(carro.colid(mal1)){
+        crash.play()
         carro.vida -= 1
         mal1.recomeca()
         console.log("mal1")
     }else if(carro.colid(mal11)){
+        crash.play()
         carro.vida -= 1
         mal11.recomeca()
         console.log("mal11")
     }else if(carro.colid(mal2)){
+        crash.play()
         carro.vida -= 1
         mal2.recomeca()
         console.log("mal2")
     }else if(carro.colid(mal22)){
+        crash.play()
         carro.vida -= 1
         mal22.recomeca()
         console.log("mal22")
     }else if(carro.colid(policia)){
+        crash.play()
         carro.vida -= 1
         policia.recomeca()
         console.log("policia")
     }else if(carro.colid(policia2)){
+        crash.play()
         carro.vida -= 1
         policia2.recomeca()
         console.log("policia2")
     }else if(carro.colid(lata)){
+        crash.play()
         carro.vida -= 1
         lata.recomeca()
     }else if(carro.colid(lata2)){
+        crash.play()
         carro.vida -= 1
         lata2.recomeca()
     }else if(carro.colid(lata3)){
+        crash.play()
         carro.vida -= 1
         lata3.recomeca()
     }else if(carro.colid(lata4)){
+        crash.play()
         carro.vida -= 1
         lata4.recomeca()
     }
@@ -133,6 +163,7 @@ function colisao(){
 
 function game_over(){
     if(carro.vida <=0){
+        motor.pause()
         tela = 4
         carro.pts = 0
     }
@@ -154,10 +185,13 @@ function fase3(){
 
 function atualizar(){
     if(tela === 0 ){
+        musicaInicial.play()
         inicio.des_obj()
         tInicio1.des_text("Desert Race", 340, 160, "#C2B280", "100px Times")
         tInicio2.des_text("Aperte R para começar", 360, 500, "#C2B280", "50px Times")
     }else if(tela === 1){
+        motor.play()
+        musicaInicial.pause()
         cenario.mov()
         cenario2.mov()
         cenario3.mov()
@@ -231,6 +265,7 @@ function desenhar(){
         mal2.des_player()
         mal22.des_player()
     }else if(tela === 4){
+        gameOver.play()
         t3.des_text('Game Over',500,300,'red','50px Times')
         t4.des_text('Pressione R para recomeçar',500,400,'red','30px Times')
     }else if(tela === 2){
