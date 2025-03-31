@@ -79,8 +79,8 @@ class Enemy extends Player{
     }
 
     recomeca(){
-        this.x = +1200
-        this.y = Math.floor(Math.random() * ((600 - 2 + 1) + 2))
+        this.x += 1300
+        this.y = Math.floor(Math.random() * ((600 - 2 + 100) + 2))
     }
 
     mov_enemy2(){
@@ -105,9 +105,4 @@ class Text{
         des.font = font
         des.fillText(text,x,y)
     }
-}
-
-class Enemy2 extends Player{
-
-
 }

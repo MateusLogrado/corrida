@@ -7,13 +7,13 @@ let inicio = new Obj(0,0,1200,600, "./img/desert.PNG")
 
 let carro = new Player(150,250,100,50,"./img/carrolegal.PNG")
 
-let mal1 = new Enemy(1150,50,100,50,"./img/carromal1.png")
-let mal11 = new Enemy(1150,250,100,50,"./img/carromal1.png")
-let mal2 = new Enemy(1150,450,100,50,"./img/carromal2.png")
-let mal22 = new Enemy(1150,550,100,50,"./img/carromal2.png")
+let mal1 = new Enemy(1050,50,100,50,"./img/carromal1.png")
+let mal11 = new Enemy(1890,250,100,50,"./img/carromal1.png")
+let mal2 = new Enemy(1610,450,100,50,"./img/carromal2.png")
+let mal22 = new Enemy(2190,550,100,50,"./img/carromal2.png")
 
-let policia = new Enemy(1150,550,100,50,"./img/policia.png")
-let policia2 = new Enemy(1150,550,100,50,"./img/policia.png")
+let policia = new Enemy(3050,550,100,50,"./img/policia.png")
+let policia2 = new Enemy(2410,550,100,50,"./img/policia.png")
 
 let lata = new Enemy(600,1,30,50, "./img/lixo.png")
 let lata2 = new Enemy(600,70,30,50, "./img/lixo.png")
@@ -108,6 +108,10 @@ function pontos(){
         carro.pts += 1
         console.log(carro.pts)
     }
+
+    if(carro.pts % 25 === 0){
+        carro.vida = 5
+    }
 }
 
 function colisao(){
@@ -172,14 +176,12 @@ function game_over(){
 function fase2(){
     if(carro.pts === 20){
         tela = 2
-        carro.vida = 5
     }
 }
 
 function fase3(){
     if(carro.pts === 50){
         tela = 3
-        carro.vida = 5
     }
 }
 
@@ -311,8 +313,8 @@ function desenhar(){
 
 function main(){
     des.clearRect(0,0,1200,600)
-    desenhar()
     atualizar()
+    desenhar()
     requestAnimationFrame(main)
 }
 
