@@ -1,11 +1,11 @@
 let des = document.getElementById("des").getContext("2d")
 
-let cenario = new Bg(0,0,1200,600,"./img/estrada.png")
+let cenario = new Bg(0,0,1200,600,"./img/estrada.PNG")
 let cenario2 = new Bg(1200,0,1200,600,"./img/estrada.png")
 let cenario3 = new Bg(2400,0,1200,600,"./img/estrada.png")
-let inicio = new Obj(0,0,1200,600, "./img/desert.png")
+let inicio = new Obj(0,0,1200,600, "./img/desert.PNG")
 
-let carro = new Player(150,250,100,50,"./img/carrolegal.png")
+let carro = new Player(150,250,100,50,"./img/carrolegal.PNG")
 
 let mal1 = new Enemy(1150,50,100,50,"./img/carromal1.png")
 let mal11 = new Enemy(1150,250,100,50,"./img/carromal1.png")
